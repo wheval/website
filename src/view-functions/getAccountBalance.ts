@@ -1,10 +1,12 @@
 import { aptosClient } from "@/utils/aptosClient";
 
 export type AccountAPTBalanceArguments = {
-  accountAddress: string;
+  accountAddress: string | undefined;
 };
 
-export const getAccountAPTBalance = async (args: AccountAPTBalanceArguments): Promise<number> => {
+export const getAccountAPTBalance = async (
+  args: AccountAPTBalanceArguments
+): Promise<number> => {
   const { accountAddress } = args;
   const balance = await aptosClient().view<[number]>({
     payload: {
@@ -13,5 +15,5 @@ export const getAccountAPTBalance = async (args: AccountAPTBalanceArguments): Pr
       functionArguments: [accountAddress],
     },
   });
-  return balance[0];
+  return balance[0] ? Math.floor((balance[0] / 100_000_000) * 1000) / 1000 : 0;
 };

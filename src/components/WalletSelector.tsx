@@ -1,5 +1,6 @@
 // Internal components
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import {
   Collapsible,
   CollapsibleContent,
@@ -15,19 +16,19 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
+  // DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/components/ui/use-toast";
 import {
-  APTOS_CONNECT_ACCOUNT_URL,
+  // APTOS_CONNECT_ACCOUNT_URL,
   AboutAptosConnect,
   type AboutAptosConnectEducationScreen,
   type AnyAptosWallet,
   AptosPrivacyPolicy,
   WalletItem,
   groupAndSortWallets,
-  isAptosConnectWallet,
+  // isAptosConnectWallet,
   isInstallRequired,
   truncateAddress,
   useWallet,
@@ -36,14 +37,15 @@ import {
   ArrowLeft,
   ArrowRight,
   ChevronDown,
-  Copy,
-  LogOut,
-  User,
+  // Copy,
+  // LogOut,
+  // User,
 } from "lucide-react";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
+import { getAccountAPTBalance } from "@/view-functions/getAccountBalance";
 
 export function WalletSelector() {
-  const { account, connected, disconnect, wallet } = useWallet();
+  const { account, connected, disconnect } = useWallet();
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -56,6 +58,7 @@ export function WalletSelector() {
       toast({
         title: "Success",
         description: "Copied wallet address to clipboard.",
+        className: "bg-[#573019] text-white",
       });
     } catch {
       toast({
@@ -66,38 +69,198 @@ export function WalletSelector() {
     }
   }, [account?.address, toast]);
 
+  const [balance, setBalance] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      if (account?.address) {
+        try {
+          const bal = await getAccountAPTBalance({
+            accountAddress: account.address,
+          });
+          setBalance(bal);
+        } catch (error) {
+          console.error("Failed to fetch balance:", error);
+          setBalance(0);
+        }
+      }
+    };
+
+    fetchBalance();
+  }, [account?.address]);
+
+  const handleProfile = () => {
+    toast({
+      description: "Coming Soon~",
+      className: "bg-[#573019] text-white",
+    });
+  };
+
   return connected ? (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button>
-          {account?.ansName || truncateAddress(account?.address) || "Unknown"}
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onSelect={copyAddress} className="gap-2">
-          <Copy className="h-4 w-4" /> Copy address
-        </DropdownMenuItem>
-        {wallet && isAptosConnectWallet(wallet) && (
-          <DropdownMenuItem asChild>
-            <a
-              href={APTOS_CONNECT_ACCOUNT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex gap-2"
+    <div className="flex items-center">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="flex items-center cursor-pointer group">
+            <div
+              className="relative"
+              style={{
+                width: "clamp(40px, calc(80 / 1920 * 100vw), 80px)",
+                aspectRatio: "1/1",
+              }}
             >
-              <User className="h-4 w-4" /> Account
-            </a>
+              <Image
+                src="/images/wallet_avatar.webp"
+                alt="Avatar"
+                width={267}
+                height={80}
+                sizes="267px"
+                className="w-full h-full absolute left-8 z-10"
+                priority
+              />
+            </div>
+            <div
+              className="relative w-full"
+              style={{
+                width: "clamp(106px, calc(212 / 1920 * 100vw), 212px)",
+                aspectRatio: "212/80",
+              }}
+            >
+              <Image
+                src="/images/wallet_bg.webp"
+                alt="Account"
+                width={267}
+                height={80}
+                sizes="267px"
+                className="w-full h-full"
+                priority
+              />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC9261] text-[0.5rem] sm:text-[0.5rem] md:text-[0.75rem] lg:text-[1.2rem] font-bold [text-shadow:1px_1px_5px_black] whitespace-nowrap flex items-center gap-2 group-data-[state=open]:text-[#8d5839]">
+                Account
+                <div className="w-0 h-0 border-l-[2px] border-r-[2px] border-t-[6px] sm:border-l-[2px] sm:border-r-[2px] sm:border-t-[8px] md:border-l-[3px] md:border-r-[3px] md:border-t-[10px] lg:border-l-[4px] lg:border-r-[4px] lg:border-t-[12px] border-l-transparent border-r-transparent border-t-[#f4a07e] group-data-[state=open]:border-t-[#8d5839] bg-transparent after:content-[''] after:absolute after:top-[-1px] after:left-1/2 after:-translate-x-1/2 after:w-[3px] after:h-[1px] after:bg-transparent"></div>
+              </div>
+            </div>
+          </div>
+          {/* <Button>
+            {account?.ansName || truncateAddress(account?.address) || "Unknown"}
+          </Button> */}
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="end"
+          className="relative p-0 border-0 bg-transparent"
+        >
+          <div
+            className="relative w-full"
+            style={{
+              width: "clamp(168px, calc(212 / 1920 * 100vw), 212px)",
+              aspectRatio: "212/194",
+            }}
+          >
+            <Image
+              src="/images/wallet_menu.webp"
+              alt="Menu"
+              width={212}
+              height={194}
+              sizes="212px"
+              className="w-full h-full absolute top-0 left-0 -z-10"
+              priority
+            />
+            <div className="flex flex-col p-4 text-[#FB7942] gap-2 items-start absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="flex items-center text-16 text-[#FB7942]">
+                <span>Balance</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[#f6c543]">
+                  {balance} <span className="text-[#EC9261]">APTs</span>
+                </span>
+              </div>
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[#df966a] text-14">
+                  {truncateAddress(account?.address)}
+                </span>{" "}
+                <button
+                  onClick={copyAddress}
+                  className="hover:opacity-80 text-12 underline"
+                >
+                  {/* <Copy className="h-4 w-4" /> */}
+                  Copy
+                </button>
+              </div>
+              <button
+                onClick={disconnect}
+                className="flex items-center gap-1 hover:opacity-80"
+              >
+                {/* <LogOut className="h-4 w-4" /> */}
+                <span className="text-[#df966a] text-20">Log out</span>
+              </button>
+            </div>
+          </div>
+
+          {/* <DropdownMenuItem onSelect={copyAddress} className="gap-2">
+            <Copy className="h-4 w-4" /> Copy address
           </DropdownMenuItem>
-        )}
-        <DropdownMenuItem onSelect={disconnect} className="gap-2">
-          <LogOut className="h-4 w-4" /> Disconnect
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+          {wallet && isAptosConnectWallet(wallet) && (
+            <DropdownMenuItem asChild>
+              <a
+                href={APTOS_CONNECT_ACCOUNT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-2"
+              >
+                <User className="h-4 w-4" /> Account
+              </a>
+            </DropdownMenuItem>
+          )}
+          <DropdownMenuItem onSelect={disconnect} className="gap-2">
+            <LogOut className="h-4 w-4" /> Disconnect
+          </DropdownMenuItem> */}
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <div
+        className="cursor-pointer relative ml-2"
+        style={{
+          width: "clamp(106px, calc(212 / 1920 * 100vw), 212px)",
+          aspectRatio: "212/80",
+        }}
+        onClick={handleProfile}
+      >
+        <Image
+          src="/images/wallet_bg.webp"
+          alt="Profile"
+          width={267}
+          height={80}
+          sizes="267px"
+          className="w-full h-full"
+          priority
+        />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC9261] text-[0.5rem] sm:text-[0.5rem] md:text-[0.75rem] lg:text-[1.2rem] font-bold [text-shadow:1px_1px_5px_black] whitespace-nowrap">
+          Profile
+        </div>
+      </div>
+    </div>
   ) : (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <Button>Connect a Wallet</Button>
+        <div
+          className="cursor-pointer relative"
+          style={{
+            width: "clamp(106px, calc(212 / 1920 * 100vw), 212px)",
+            aspectRatio: "212/80",
+          }}
+        >
+          <Image
+            src="/images/wallet_bg.webp"
+            alt="Connect Wallet"
+            width={267}
+            height={80}
+            sizes="267px"
+            className="w-full h-full"
+            priority
+          />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC9261] text-[0.5rem] sm:text-[0.5rem] md:text-[0.75rem] lg:text-[1.2rem] font-bold [text-shadow:1px_1px_5px_black] whitespace-nowrap">
+            Connect Wallet
+          </div>
+        </div>
+        {/* <Button>Connect Wallet</Button> */}
       </DialogTrigger>
       <ConnectWalletDialog close={closeDialog} />
     </Dialog>

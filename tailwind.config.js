@@ -70,6 +70,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
+        irishGrover: ["var(--font-irish-grover)"],
         sans: ["sans-serif"],
         inter: ["Inter", "sans-serif"],
       },
