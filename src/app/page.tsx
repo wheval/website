@@ -1,22 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-// import { AccountInfo } from "@/components/AccountInfo";
-// import { Header } from "@/components/Header";
-// import { MessageBoard } from "@/components/MessageBoard";
-// import { NetworkInfo } from "@/components/NetworkInfo";
-// import { TopBanner } from "@/components/TopBanner";
-// import { TransferAPT } from "@/components/TransferAPT";
-// import { WalletDetails } from "@/components/WalletDetails";
-// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import { WalletSelector } from "@/components/WalletSelector";
 import { AskCat } from "@/components/AskCat";
 import { Loading } from "@/components/Loading";
-import {
-  motion,
-  // AnimatePresence
-} from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useToast } from "@/components/ui/use-toast";
 import { drawsCard } from "@/entry-functions/drawsCard";
 import { aptosClient } from "@/utils/aptosClient";
@@ -472,7 +461,7 @@ art3mis.xyz
                 </div>
               </motion.div>
             )}
-            {/* {showCardList && (
+            {showCardList && (
               <div
                 className="absolute flex justify-center gap-8 z-10"
                 style={{
@@ -562,9 +551,9 @@ art3mis.xyz
                   </AnimatePresence>
                 ))}
               </div>
-            )} */}
+            )}
             {/* the chose card */}
-            {/* {clickedIndex !== null && clickedCard && (
+            {clickedIndex !== null && clickedCard && (
               <AnimatePresence>
                 <motion.div
                   className="absolute z-20 cursor-pointer"
@@ -634,8 +623,8 @@ art3mis.xyz
                   />
                 </motion.div>
               </AnimatePresence>
-            )} */}
-            {/* {choseCardVisible && (
+            )}
+            {choseCardVisible && (
               <motion.div
                 onClick={handleChoseCardVisibleClick}
                 className="absolute w-full z-20 cursor-pointer"
@@ -682,8 +671,8 @@ art3mis.xyz
                   }}
                 />
               </motion.div>
-            )} */}
-            {/* {showFinalCard && (
+            )}
+            {showFinalCard && (
               <motion.div
                 className="absolute w-full z-20"
                 style={{
@@ -735,8 +724,8 @@ art3mis.xyz
                   }}
                 />
               </motion.div>
-            )} */}
-            {/* {showFinalContent && (
+            )}
+            {showFinalContent && (
               <div
                 className="absolute flex flex-col gap-3"
                 style={{
@@ -857,7 +846,7 @@ art3mis.xyz
                   </div>
                 </div>
               </div>
-            )} */}
+            )}
           </div>
         </div>
       )}
