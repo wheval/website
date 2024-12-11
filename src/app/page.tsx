@@ -13,7 +13,7 @@ import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import { WalletSelector } from "@/components/WalletSelector";
 import { AskCat } from "@/components/AskCat";
 import { Loading } from "@/components/Loading";
-import { FireAnimation } from "@/components/fireAnimation";
+import { FireAnimation } from "@/components/FireAnimation";
 import {
   motion,
   // AnimatePresence
