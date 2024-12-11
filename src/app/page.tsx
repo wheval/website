@@ -33,7 +33,7 @@ function App() {
   const [centerPos, setCenterPos] = useState({ x: 0, y: 0 });
   const [choseCard, setChoseCard] = useState<string>();
   const [choseContent, setChoseContent] = useState<string>();
-  const [cardUri, setCardUri] = useState<string>();
+  const [cardName, setCardName] = useState<string>();
   const [choseCardVisible, setChoseCardVisible] = useState(false);
   const [cardPosition, setCardPosition] = useState<string>();
   const [clickedCard, setClickedCard] = useState(true);
@@ -95,13 +95,16 @@ function App() {
         console.log("Drawn Card Transaction:", res);
         if ("events" in res) {
           const { card, card_uri, position } = res.events[4].data;
-          const gptResponse = await fetch("/api/chat", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ description: inputValue, card, position }),
-          });
+          const gptResponse = await fetch(
+            "https://art3misoracle.jeffier2015.workers.dev",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ description: inputValue, card, position }),
+            }
+          );
           if (!gptResponse.ok) {
             throw new Error("Failed to fetch gpt source");
           }
@@ -109,7 +112,7 @@ function App() {
           const gptData = await gptResponse.json();
           console.log("GPT Response:", gptData);
           setCardPosition(position);
-          setCardUri(card_uri);
+          setCardName(card);
           const cardUrl = convertUrl(card_uri);
           setChoseCard(cardUrl);
           setChoseContent(gptData.choices[0].message.content);
@@ -210,7 +213,7 @@ function App() {
       const args: MintCardArguments = {
         question: inputValue,
         reading: choseContent,
-        card: cardUri,
+        card: cardName,
         position: cardPosition,
       };
       const response = await signAndSubmitTransaction(mintCard(args));
@@ -247,7 +250,7 @@ art3mis.xyz
 
     console.log(twitterShareUrl);
 
-    // window.open(twitterShareUrl, "_blank", "noopener,noreferrer");
+    window.open(twitterShareUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
