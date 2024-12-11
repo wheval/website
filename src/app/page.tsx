@@ -24,6 +24,8 @@ function App() {
   const { connected, signAndSubmitTransaction } = useWallet();
   const { toast } = useToast();
 
+  const [innerWidth, setInnerWidth] = useState(0);
+  const [innerHeight, setInnerHeight] = useState(0);
   const [bgLoading, setBgLoading] = useState(true);
   const [showTips, setShowTips] = useState(false);
   const [showTable, setShowTable] = useState(false);
@@ -43,14 +45,15 @@ function App() {
 
   useEffect(() => {
     // preload bg
-    // if (typeof window !== "undefined") {
-    //   const img = new Image();
-    //   img.src = "/images/bg.webp";
-    //   img.onload = () => {
-    //     setBgLoading(false);
-    //   };
-    // }
-    setBgLoading(false);
+    if (typeof window !== "undefined") {
+      const img = new window.Image();
+      img.src = "/images/bg.webp";
+      img.onload = () => {
+        setBgLoading(false);
+      };
+    }
+    setInnerWidth(window.innerWidth);
+    setInnerHeight(window.innerHeight);
   }, []);
 
   useEffect(() => {
@@ -622,15 +625,10 @@ art3mis.xyz
                     top: "50%",
                     transform: "translate(-50%, -50%)",
                   }}
-                  // initial={{
-                  //   scale: 1,
-                  //   x: centerPos.x - window.innerWidth / 2,
-                  //   y: centerPos.y - window.innerHeight / 2,
-                  // }}
                   initial={{
                     scale: 1,
-                    x: centerPos.x,
-                    y: centerPos.y,
+                    x: centerPos.x - innerWidth / 2,
+                    y: centerPos.y - innerHeight / 2,
                   }}
                   animate={{
                     scale: 1.5,
