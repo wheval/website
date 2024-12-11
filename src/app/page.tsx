@@ -261,7 +261,7 @@ art3mis.xyz
             {/* fire animation */}
             <FireAnimation />
             {/* wallet */}
-            {/* <div
+            <div
               className="absolute z-10"
               style={{
                 right: "calc(40 / 1920 * 100%)",
@@ -270,9 +270,9 @@ art3mis.xyz
               }}
             >
               <WalletSelector />
-            </div> */}
+            </div>
             {/* ask */}
-            {/* {!showTips && !showTable && !showCardList && (
+            {!showTips && !showTable && !showCardList && (
               <div
                 className="absolute flex justify-center items-center z-10"
                 style={{
@@ -332,8 +332,8 @@ art3mis.xyz
                   </div>
                 </div>
               </div>
-            )} */}
-            {/* {showTips && (
+            )}
+            {showTips && (
               <div
                 className="absolute flex justify-center items-center z-10"
                 style={{
@@ -369,7 +369,7 @@ art3mis.xyz
                   />
                 </div>
               </div>
-            )} */}
+            )}
             {/* {showTable && (
               <motion.div
                 className="absolute flex justify-center items-center z-10"
