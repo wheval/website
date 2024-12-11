@@ -15,7 +15,10 @@ import Lottie from "lottie-react";
 import fireAnimation from "@/animations/fire.json";
 import { AskCat } from "@/components/AskCat";
 import { Loading } from "@/components/Loading";
-import { motion, AnimatePresence } from "motion/react";
+import {
+  motion,
+  // AnimatePresence
+} from "motion/react";
 import { useToast } from "@/components/ui/use-toast";
 import { drawsCard } from "@/entry-functions/drawsCard";
 import { aptosClient } from "@/utils/aptosClient";
@@ -531,7 +534,7 @@ art3mis.xyz
                   height: "auto",
                 }}
               >
-                {Array.from({ length: 6 }).map((_, index) => (
+                {/* {Array.from({ length: 6 }).map((_, index) => (
                   <AnimatePresence key={index}>
                     {clickedIndex === null ? (
                       <motion.div
@@ -609,11 +612,11 @@ art3mis.xyz
                       </motion.div>
                     ) : null}
                   </AnimatePresence>
-                ))}
+                ))} */}
               </div>
             )}
             {/* the chose card */}
-            {clickedIndex !== null && clickedCard && (
+            {/* {clickedIndex !== null && clickedCard && (
               <AnimatePresence>
                 <motion.div
                   className="absolute z-20 cursor-pointer"
@@ -683,7 +686,7 @@ art3mis.xyz
                   />
                 </motion.div>
               </AnimatePresence>
-            )}
+            )} */}
             {choseCardVisible && (
               <motion.div
                 onClick={handleChoseCardVisibleClick}
