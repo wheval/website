@@ -10,6 +10,7 @@ import { WrongNetworkAlert } from "@/components/WrongNetworkAlert";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.art3mis.xyz"),
   applicationName: "Art3MisOracle",
   title: "Art3MisOracle",
   description: "Art3MisOracle",

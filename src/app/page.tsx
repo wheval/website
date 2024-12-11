@@ -44,11 +44,13 @@ function App() {
 
   useEffect(() => {
     // preload bg
-    const img = new window.Image();
-    img.src = "/images/bg.webp";
-    img.onload = () => {
-      setBgLoading(false);
-    };
+    if (typeof window !== "undefined") {
+      const img = new window.Image();
+      img.src = "/images/bg.webp";
+      img.onload = () => {
+        setBgLoading(false);
+      };
+    }
   }, []);
 
   useEffect(() => {
@@ -620,10 +622,15 @@ art3mis.xyz
                     top: "50%",
                     transform: "translate(-50%, -50%)",
                   }}
+                  // initial={{
+                  //   scale: 1,
+                  //   x: centerPos.x - window.innerWidth / 2,
+                  //   y: centerPos.y - window.innerHeight / 2,
+                  // }}
                   initial={{
                     scale: 1,
-                    x: centerPos.x - window.innerWidth / 2,
-                    y: centerPos.y - window.innerHeight / 2,
+                    x: centerPos.x,
+                    y: centerPos.y,
                   }}
                   animate={{
                     scale: 1.5,
