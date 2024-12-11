@@ -257,8 +257,7 @@ art3mis.xyz
               className="w-full h-full col-start-1 row-start-1"
             />
             {/* fire animation */}
-            <div className="col-start-1 row-start-1 relative">
-              {/* fire1 */}
+            {/* <div className="col-start-1 row-start-1 relative">
               <div
                 className="absolute"
                 style={{
@@ -276,7 +275,6 @@ art3mis.xyz
                 />
               </div>
 
-              {/* fire2 */}
               <div
                 className="absolute"
                 style={{
@@ -294,7 +292,6 @@ art3mis.xyz
                 />
               </div>
 
-              {/* fire3 */}
               <div
                 className="absolute"
                 style={{
@@ -311,7 +308,7 @@ art3mis.xyz
                   autoplay={true}
                 />
               </div>
-            </div>
+            </div> */}
             {/* wallet */}
             {/* <div
               className="absolute z-10"
