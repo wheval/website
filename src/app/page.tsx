@@ -370,7 +370,7 @@ art3mis.xyz
                 </div>
               </div>
             )}
-            {/* {showTable && (
+            {showTable && (
               <motion.div
                 className="absolute flex justify-center items-center z-10"
                 style={{
@@ -471,7 +471,7 @@ art3mis.xyz
                   )}
                 </div>
               </motion.div>
-            )} */}
+            )}
             {/* {showCardList && (
               <div
                 className="absolute flex justify-center gap-8 z-10"
