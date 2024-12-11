@@ -9,6 +9,7 @@ import { Loading } from "@/components/Loading";
 import { motion, AnimatePresence } from "motion/react";
 import { useToast } from "@/components/ui/use-toast";
 import { drawsCard } from "@/entry-functions/drawsCard";
+import { mintCard, MintCardArguments } from "@/entry-functions/mintCard";
 import { aptosClient } from "@/utils/aptosClient";
 import dynamic from "next/dynamic";
 const FireAnimation = dynamic(() => import("@/components/FireAnimation"), {
@@ -32,6 +33,7 @@ function App() {
   const [centerPos, setCenterPos] = useState({ x: 0, y: 0 });
   const [choseCard, setChoseCard] = useState<string>();
   const [choseContent, setChoseContent] = useState<string>();
+  const [cardUri, setCardUri] = useState<string>();
   const [choseCardVisible, setChoseCardVisible] = useState(false);
   const [cardPosition, setCardPosition] = useState<string>();
   const [clickedCard, setClickedCard] = useState(true);
@@ -107,6 +109,7 @@ function App() {
           const gptData = await gptResponse.json();
           console.log("GPT Response:", gptData);
           setCardPosition(position);
+          setCardUri(card_uri);
           const cardUrl = convertUrl(card_uri);
           setChoseCard(cardUrl);
           setChoseContent(gptData.choices[0].message.content);
@@ -201,11 +204,32 @@ function App() {
     setClickedCard(true);
   }
 
-  const handleMintClick = () => {
-    toast({
-      description: "Coming Soon~",
-      className: "bg-[#573019] text-white",
-    });
+  const handleMintClick = async () => {
+    try {
+      setLoading(true);
+      const args: MintCardArguments = {
+        question: inputValue,
+        reading: choseContent,
+        card: cardUri,
+        position: cardPosition,
+      };
+      const response = await signAndSubmitTransaction(mintCard(args));
+      const res = await aptosClient().waitForTransaction({
+        transactionHash: response.hash,
+      });
+      console.log("Mint Card Transaction:", res);
+      toast({
+        description: "Mint Card Success~",
+        className: "bg-[#573019] text-white",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Network error, please try it later~",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleShareClick = () => {
