@@ -225,7 +225,7 @@ art3mis.xyz
 
     console.log(twitterShareUrl);
 
-    window.open(twitterShareUrl, "_blank", "noopener,noreferrer");
+    // window.open(twitterShareUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
