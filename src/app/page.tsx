@@ -101,7 +101,7 @@ function App() {
             body: JSON.stringify({ description: inputValue, card, position }),
           });
           if (!gptResponse.ok) {
-            throw new Error("Failed to fetch rap lyrics");
+            throw new Error("Failed to fetch gpt source");
           }
 
           const gptData = await gptResponse.json();
