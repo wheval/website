@@ -2,7 +2,7 @@
 import Lottie from "lottie-react";
 import fireAnimation from "@/animations/fire.json";
 
-export function FireAnimation() {
+export default function FireAnimation() {
   return (
     <>
       <div className="col-start-1 row-start-1 relative">

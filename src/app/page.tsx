@@ -13,7 +13,6 @@ import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import { WalletSelector } from "@/components/WalletSelector";
 import { AskCat } from "@/components/AskCat";
 import { Loading } from "@/components/Loading";
-import { FireAnimation } from "@/components/FireAnimation";
 import {
   motion,
   // AnimatePresence
@@ -21,6 +20,10 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { drawsCard } from "@/entry-functions/drawsCard";
 import { aptosClient } from "@/utils/aptosClient";
+import dynamic from "next/dynamic";
+const FireAnimation = dynamic(() => import("@/components/FireAnimation"), {
+  ssr: false,
+});
 
 function App() {
   const { connected, signAndSubmitTransaction } = useWallet();
