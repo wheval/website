@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
 // import { AccountInfo } from "@/components/AccountInfo";
@@ -44,13 +43,14 @@ function App() {
 
   useEffect(() => {
     // preload bg
-    if (typeof window !== "undefined") {
-      const img = new window.Image();
-      img.src = "/images/bg.webp";
-      img.onload = () => {
-        setBgLoading(false);
-      };
-    }
+    // if (typeof window !== "undefined") {
+    //   const img = new Image();
+    //   img.src = "/images/bg.webp";
+    //   img.onload = () => {
+    //     setBgLoading(false);
+    //   };
+    // }
+    setBgLoading(false);
   }, []);
 
   useEffect(() => {
