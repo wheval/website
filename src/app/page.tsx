@@ -313,7 +313,7 @@ art3mis.xyz
               </div>
             </div>
             {/* wallet */}
-            <div
+            {/* <div
               className="absolute z-10"
               style={{
                 right: "calc(40 / 1920 * 100%)",
@@ -322,7 +322,7 @@ art3mis.xyz
               }}
             >
               <WalletSelector />
-            </div>
+            </div> */}
             {/* ask */}
             {/* {!showTips && !showTable && !showCardList && (
               <div
