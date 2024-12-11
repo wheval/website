@@ -18,8 +18,8 @@ function App() {
   const { connected, signAndSubmitTransaction } = useWallet();
   const { toast } = useToast();
 
-  const [innerWidth, setInnerWidth] = useState(0);
-  const [innerHeight, setInnerHeight] = useState(0);
+  // const [innerWidth, setInnerWidth] = useState(0);
+  // const [innerHeight, setInnerHeight] = useState(0);
   const [bgLoading, setBgLoading] = useState(true);
   const [showTips, setShowTips] = useState(false);
   const [showTable, setShowTable] = useState(false);
@@ -46,8 +46,8 @@ function App() {
         setBgLoading(false);
       };
     }
-    setInnerWidth(window.innerWidth);
-    setInnerHeight(window.innerHeight);
+    // setInnerWidth(window.innerWidth);
+    // setInnerHeight(window.innerHeight);
   }, []);
 
   useEffect(() => {
@@ -567,8 +567,8 @@ art3mis.xyz
                   }}
                   initial={{
                     scale: 1,
-                    x: centerPos.x - innerWidth / 2,
-                    y: centerPos.y - innerHeight / 2,
+                    x: centerPos.x - window.innerWidth / 2,
+                    y: centerPos.y - window.innerHeight / 2,
                   }}
                   animate={{
                     scale: 1.5,
