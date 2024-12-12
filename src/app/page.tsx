@@ -100,7 +100,7 @@ function App() {
             (i) => i.type === `${MODULE_ADDRESS}::tarot::CardDrawnEvent`
           );
           if (!cardDrawnEvent) {
-            throw new Error("Failed to fetch contract Drawn card event");
+            throw new Error("Failed to fetch contract drawn card event");
           }
           const { card, card_uri, position } = cardDrawnEvent.data;
           const gptResponse = await fetch(
