@@ -12,6 +12,8 @@ import { drawsCard } from "@/entry-functions/drawsCard";
 import { mintCard, MintCardArguments } from "@/entry-functions/mintCard";
 import { aptosClient } from "@/utils/aptosClient";
 import dynamic from "next/dynamic";
+import { MODULE_ADDRESS } from "@/constants";
+
 const FireAnimation = dynamic(() => import("@/components/FireAnimation"), {
   ssr: false,
 });
@@ -94,7 +96,13 @@ function App() {
         });
         console.log("Drawn Card Transaction:", res);
         if ("events" in res) {
-          const { card, card_uri, position } = res.events[4].data;
+          const cardDrawnEvent = res.events.find(
+            (i) => i.type === `${MODULE_ADDRESS}::tarot::CardDrawnEvent`
+          );
+          if (!cardDrawnEvent) {
+            throw new Error("Failed to fetch contract Drawn card event");
+          }
+          const { card, card_uri, position } = cardDrawnEvent.data;
           const gptResponse = await fetch(
             "https://art3misoracle.jeffier2015.workers.dev",
             {
