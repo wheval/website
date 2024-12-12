@@ -1,40 +1,41 @@
-## Create Aptos Dapp Boilerplate Template
+# Art3mis Oracle
+Art3mis Oracle is a Web3 AI-powered onchain tarot reading platform built on Aptos. The platform combines ancient divination practices with modern AI to offer personalized tarot readings directly on the blockchain.
 
-The Boilerplate template provides a starter dapp with all necessary dapp infrastructure and a simple wallet info implementation, transfer APT and a simple message board functionality to send and read a message on chain.
+## 🌐 Live Demo
+[Link to live testnet site](https://www.art3mis.xyz/)
 
-## Read the Boilerplate template docs
-To get started with the Boilerplate template and learn more about the template functionality and usage, head over to the [Boilerplate template docs](https://learn.aptoslabs.com/en/dapp-templates/boilerplate-template) 
+## 🔮 Features
+
+Art3mis Oracle provides an interactive and mystic experience with the following functionalities:
+
+**Wallet Connect Login**: 
+- Connect your Web3 wallet to securely access the platform and receive your readings on-chain.
+- Or connect with your Google account powered by Aptos Connect
+
+**Ask a Question**: Enter a question or topic that you'd like guidance on.
+  
+**Draw a Card**: Draw a tarot card from the deck
+
+**Get Your Fate Revealed**: Receive a personalized tarot reading, revealing your fate and providing tailored advice based on the drawn card and your query.
 
 
-## The Boilerplate template provides:
+## 🚀 How It Works
 
-- **Folder structure** - A pre-made dapp folder structure with a `src` (frontend) and `contract` folders.
-- **Dapp infrastructure** - All required dependencies a dapp needs to start building on the Aptos network.
-- **Wallet Info implementation** - Pre-made `WalletInfo` components to demonstrate how one can use to read a connected Wallet info.
-- **Transfer APT implementation** - Pre-made `transfer` components to send APT to an address.
-- **Message board functionality implementation** - Pre-made `message` components to send and read a message on chain
+**Connect Your Wallet**: Connect your wallet through Polkadot.js to log in and access the platform.
 
+**Pose Your Question**: Type in your question or select from predefined queries for guidance.
 
-## What tools the template uses?
+**Draw Your Tarot Card**: Click the "Draw Card" button to receive a tarot card, randomly selected through onchain VRF on the smart contract.
 
-- React framework
-- shadcn/ui + tailwind for styling
-- Aptos TS SDK
-- Aptos Wallet Adapter
-- Node based Move commands
-- [Next-pwa](https://ducanh-next-pwa.vercel.app/)
+**Receive Your Answer**: The AI interprets the card and returns a personalized reading based on your question and card drawn, offering insights and guidance from beyond the depths of Polkadot blockchain technology.
 
-## What Move commands are available?
+## 🛠️ Built With
+Aptos: Seemless affordable on chain experience.
 
-The tool utilizes [aptos-cli npm package](https://github.com/aptos-labs/aptos-cli) that lets us run Aptos CLI in a Node environment.
+Aptos wallet adapter and Aptos Connect: For wallet connection and Social login on Aptos network.
 
-Some commands are built-in the template and can be ran as a npm script, for example:
+OpenAI API: AI-generated responses and personalized interpretations.
 
-- `npm run move:publish` - a command to publish the Move contract
-- `npm run move:test` - a command to run Move unit tests
-- `npm run move:compile` - a command to compile the Move contract
-- `npm run move:upgrade` - a command to upgrade the Move contract
-- `npm run dev` - a command to run the frontend locally
-- `npm run deploy` - a command to deploy the dapp to Vercel
+React.js: Frontend framework for a smooth user experience.
 
-For all other available CLI commands, can run `npx aptos` and see a list of all available commands.
+Tailwind CSS: Styling for an intuitive and mystical interface.
