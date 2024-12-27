@@ -67,6 +67,10 @@ export default function FAQPage() {
           answer: "Simply connect your Aptos-compatible wallet or sign in with your Google Account to the platform to get started. No prior blockchain experience is required!"
         },
         {
+          question: "What wallet can i use to sign up?",
+          answer: "Aptos-compatible wallets like Nightly Wallet, Petra Wallet, Martian Wallet, and others can be used to sign up for Art3mis Oracle. If you don't have a wallet yet, you can create one during the sign-up process."
+        },
+        {
           question: "Do I need to pay for readings?",
           answer: "Art3mis Oracle offers both free and paid readings. Premium readings and NFTs are available at a small fee, with subscriptions planned for daily readings and other exclusive content."
         }
