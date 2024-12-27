@@ -1,8 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
-import Image from 'next/image'
 
 interface FAQItem {
   question: string
